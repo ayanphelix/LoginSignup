@@ -10,6 +10,8 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    var componentViewBottonConstrait : NSLayoutConstraint?
+    
     let componentView : UIView = {
         let view = UIView()
 //        view.backgroundColor = .red
@@ -119,6 +121,30 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
         setupView()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func handleKeyboardNotification(notification: NSNotification){
+        
+        if let userInfo = notification.userInfo{
+            let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey]) as! NSValue
+            let keyboardDuration = userInfo[UIKeyboardAnimationDurationUserInfoKey]as! NSValue
+            
+            let iskeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
+            
+            componentViewBottonConstrait?.constant = iskeyboardShowing ? -keyboardFrame.cgRectValue.height : 0
+            
+            UIView.animate(withDuration: keyboardDuration as! TimeInterval, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+                
+                self.view.layoutIfNeeded()
+                
+            }, completion: { (completed) in
+                
+            })
+        }
     }
     
     @objc fileprivate func handleRegsiterButton(){
@@ -128,8 +154,10 @@ class HomeVC: UIViewController {
     fileprivate func setupView(){
         view.addSubview(componentView)
         
-        componentView.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor)
-        componentView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.50).isActive = true
+        componentView.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, bottom: nil)
+        componentViewBottonConstrait = componentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        componentViewBottonConstrait?.isActive = true
+        componentView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.45).isActive = true
         
         setupTextFieldsStactView()
     }
@@ -197,7 +225,7 @@ class HomeVC: UIViewController {
         
         componentView.addSubview(registerButton)
         
-        registerButton.anchor(top: fieldsStackView.bottomAnchor, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: nil, padding: .init(top: 20, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 50))
+        registerButton.anchor(top: fieldsStackView.bottomAnchor, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: nil, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 50))
     }
     
     
