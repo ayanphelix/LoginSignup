@@ -10,11 +10,18 @@ import UIKit
 
 class HomeVC: UIViewController {
     
+    let componentView : UIView = {
+        let view = UIView()
+//        view.backgroundColor = .red
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
     let emailImageView : UIImageView = {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "email-60").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
+        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -31,6 +38,7 @@ class HomeVC: UIViewController {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "password").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
+        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -48,6 +56,7 @@ class HomeVC: UIViewController {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "username").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
+        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -64,6 +73,7 @@ class HomeVC: UIViewController {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "phone-Small-40").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
+        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -80,6 +90,7 @@ class HomeVC: UIViewController {
         let img = UIImageView()
         img.image = #imageLiteral(resourceName: "email-60").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
+        img.translatesAutoresizingMaskIntoConstraints = false
         return img
     }()
     
@@ -91,10 +102,35 @@ class HomeVC: UIViewController {
         tf.setBottomBorder(backgroundColor: UIColor.backgroundColor, borderColor: .white)
         return tf
     }()
+    
+    lazy var registerButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("REGISTER", for: .normal)
+        button.setTitleColor(Service.buttonTitleColor, for: .normal)
+        button.backgroundColor = Service.primaryDarkColor
+        button.titleLabel?.font = Service.buttonFontSize
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = Service.buttonCornerRadius
+        button.addTarget(self, action: #selector(handleRegsiterButton), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
+        setupView()
+    }
+    
+    @objc fileprivate func handleRegsiterButton(){
+        print("register here")
+    }
+    
+    fileprivate func setupView(){
+        view.addSubview(componentView)
+        
+        componentView.anchor(top: nil, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor)
+        componentView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.50).isActive = true
+        
         setupTextFieldsStactView()
     }
     
@@ -119,7 +155,7 @@ class HomeVC: UIViewController {
         fieldsStackView.spacing = 8
         fieldsStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(fieldsStackView)
+        componentView.addSubview(fieldsStackView)
         emailView.addSubview(emailImageView)
         emailView.addSubview(emailTextField)
         passwordView.addSubview(passwordImageView)
@@ -131,29 +167,40 @@ class HomeVC: UIViewController {
         addressView.addSubview(addressImageView)
         addressView.addSubview(addresssTextField)
         
-        fieldsStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.safeAreaLayoutGuide.leadingAnchor, trailing: view.safeAreaLayoutGuide.trailingAnchor, bottom: nil, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 0))
-        fieldsStackView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.25).isActive = true
+        fieldsStackView.anchor(top: componentView.topAnchor, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: nil, padding: .init(top: 0, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 0))
+        fieldsStackView.heightAnchor.constraint(equalTo: componentView.heightAnchor, multiplier: 0.60).isActive = true
         
-        emailImageView.anchor(top: emailView.topAnchor, leading: emailView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        emailImageView.anchor(top: nil, leading: emailView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        emailImageView.centerYAnchor.constraint(equalTo: emailView.centerYAnchor).isActive = true
         
         emailTextField.anchor(top: emailView.topAnchor, leading: emailImageView.trailingAnchor, trailing: emailView.trailingAnchor, bottom: emailView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
         
-        passwordImageView.anchor(top: passwordView.topAnchor, leading: passwordView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        passwordImageView.anchor(top: nil, leading: passwordView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        passwordImageView.centerYAnchor.constraint(equalTo: passwordView.centerYAnchor).isActive = true
         
         passwordTextField.anchor(top: passwordView.topAnchor, leading: passwordImageView.trailingAnchor, trailing: passwordView.trailingAnchor, bottom: passwordView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
         
-        usernameImageView.anchor(top: usernameView.topAnchor, leading: usernameView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        usernameImageView.anchor(top: nil, leading: usernameView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        usernameImageView.centerYAnchor.constraint(equalTo: usernameView.centerYAnchor).isActive = true
         
         usernameTextField.anchor(top: usernameView.topAnchor, leading: usernameImageView.trailingAnchor, trailing: usernameView.trailingAnchor, bottom: usernameView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
         
-        phoneImageView.anchor(top: phoneView.topAnchor, leading: phoneView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        phoneImageView.anchor(top: nil, leading: phoneView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        phoneImageView.centerYAnchor.constraint(equalTo: phoneView.centerYAnchor).isActive = true
         
         phoneTextField.anchor(top: phoneView.topAnchor, leading: phoneImageView.trailingAnchor, trailing: phoneView.trailingAnchor, bottom: phoneView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
         
-        addressImageView.anchor(top: addressView.topAnchor, leading: addressView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        addressImageView.anchor(top: nil, leading: addressView.leadingAnchor, trailing: nil, bottom: nil, padding: .zero, size: .init(width: 30, height: 30))
+        addressImageView.centerYAnchor.constraint(equalTo: addressView.centerYAnchor).isActive = true
         
         addresssTextField.anchor(top: addressView.topAnchor, leading: addressImageView.trailingAnchor, trailing: addressView.trailingAnchor, bottom: addressView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
+        
+        componentView.addSubview(registerButton)
+        
+        registerButton.anchor(top: fieldsStackView.bottomAnchor, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: nil, padding: .init(top: 20, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 50))
     }
+    
+    
 }
 
 
