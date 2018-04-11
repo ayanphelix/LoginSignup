@@ -1,5 +1,5 @@
 //
-//  HomeVC.swift
+//  RegisterVC.swift
 //  LoginSignup
 //
 //  Created by Ayanbola Felix on 08/04/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+class RegisterVC: UIViewController {
     
     var componentViewBottonConstrait : NSLayoutConstraint?
     
@@ -32,6 +32,7 @@ class HomeVC: UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
         tf.textColor = .white
         tf.tintColor = .white
+        tf.keyboardType = .emailAddress
         tf.setBottomBorder(backgroundColor: UIColor.backgroundColor, borderColor: .white)
         return tf
     }()
@@ -84,13 +85,14 @@ class HomeVC: UIViewController {
         tf.attributedPlaceholder = NSAttributedString(string: "Phone", attributes: [NSAttributedStringKey.foregroundColor : UIColor.white,NSAttributedStringKey.font:UIFont.systemFont(ofSize: 14)])
         tf.textColor = .white
         tf.tintColor = .white
+        tf.keyboardType = .phonePad
         tf.setBottomBorder(backgroundColor: UIColor.backgroundColor, borderColor: .white)
         return tf
     }()
     
     let addressImageView : UIImageView = {
         let img = UIImageView()
-        img.image = #imageLiteral(resourceName: "email-60").withRenderingMode(.alwaysTemplate)
+        img.image = #imageLiteral(resourceName: "location-Small-40").withRenderingMode(.alwaysTemplate)
         img.tintColor = .white
         img.translatesAutoresizingMaskIntoConstraints = false
         return img
@@ -109,11 +111,20 @@ class HomeVC: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("REGISTER", for: .normal)
         button.setTitleColor(Service.buttonTitleColor, for: .normal)
-        button.backgroundColor = Service.primaryDarkColor
+        button.backgroundColor = UIColor.buttonBackgroundColor
         button.titleLabel?.font = Service.buttonFontSize
         button.layer.masksToBounds = true
         button.layer.cornerRadius = Service.buttonCornerRadius
         button.addTarget(self, action: #selector(handleRegsiterButton), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var haveAccountButton : UIButton = {
+        let button = UIButton()
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?", attributes: [NSAttributedStringKey.foregroundColor : UIColor.buttonLightColor, NSAttributedStringKey.font : Service.buttonFontSize])
+        attributedTitle.append(NSAttributedString(string: " Login", attributes: [NSAttributedStringKey.foregroundColor : Service.buttonTitleColor, NSAttributedStringKey.font : Service.buttonFontSize]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.addTarget(self, action: #selector(handleGoBackToLoginButton), for: .touchUpInside)
         return button
     }()
 
@@ -145,6 +156,10 @@ class HomeVC: UIViewController {
                 
             })
         }
+    }
+    
+    @objc fileprivate func handleGoBackToLoginButton(){
+        navigationController?.popViewController(animated: false)
     }
     
     @objc fileprivate func handleRegsiterButton(){
@@ -224,8 +239,11 @@ class HomeVC: UIViewController {
         addresssTextField.anchor(top: addressView.topAnchor, leading: addressImageView.trailingAnchor, trailing: addressView.trailingAnchor, bottom: addressView.bottomAnchor, padding: .init(top: 0, left: 10, bottom: 0, right: 0), size: .zero)
         
         componentView.addSubview(registerButton)
-        
         registerButton.anchor(top: fieldsStackView.bottomAnchor, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: nil, padding: .init(top: 16, left: 16, bottom: 0, right: 16), size: .init(width: 0, height: 50))
+        
+        componentView.addSubview(haveAccountButton)
+        haveAccountButton.anchor(top: nil, leading: componentView.leadingAnchor, trailing: componentView.trailingAnchor, bottom: componentView.bottomAnchor, padding: .init(top: 0, left: 0, bottom: 0, right: 0), size: .init(width: 0, height: 40))
+        
     }
     
     

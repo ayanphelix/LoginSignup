@@ -8,24 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		C861CF0C207A49220023E080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF0B207A49220023E080 /* AppDelegate.swift */; };
-		C861CF0E207A49220023E080 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF0D207A49220023E080 /* HomeVC.swift */; };
+		C861CF0E207A49220023E080 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF0D207A49220023E080 /* RegisterVC.swift */; };
 		C861CF13207A49240023E080 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C861CF12207A49240023E080 /* Assets.xcassets */; };
 		C861CF16207A49240023E080 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C861CF14207A49240023E080 /* LaunchScreen.storyboard */; };
 		C861CF1F207A4C920023E080 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF1D207A4C920023E080 /* Service.swift */; };
 		C861CF20207A4C920023E080 /* view+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF1E207A4C920023E080 /* view+extension.swift */; };
 		C861CF22207A4CC60023E080 /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C861CF21207A4CC60023E080 /* ColorExtension.swift */; };
+		C8EC3498207E4DE8005C0F7F /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3497207E4DE8005C0F7F /* LoginVC.swift */; };
+		C8EC349A207E5F45005C0F7F /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8EC3499207E5F45005C0F7F /* ForgotPasswordVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C861CF08207A49220023E080 /* LoginSignup.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LoginSignup.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C861CF0B207A49220023E080 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C861CF0D207A49220023E080 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		C861CF0D207A49220023E080 /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		C861CF12207A49240023E080 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C861CF15207A49240023E080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C861CF17207A49240023E080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C861CF1D207A4C920023E080 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Service.swift; path = ../../../Users/ayanphelix/Desktop/Service.swift; sourceTree = "<group>"; };
 		C861CF1E207A4C920023E080 /* view+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "view+extension.swift"; path = "../../../Users/ayanphelix/Desktop/view+extension.swift"; sourceTree = "<group>"; };
 		C861CF21207A4CC60023E080 /* ColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorExtension.swift; path = ../../../Users/ayanphelix/Desktop/ColorExtension.swift; sourceTree = "<group>"; };
+		C8EC3497207E4DE8005C0F7F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		C8EC3499207E5F45005C0F7F /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +66,9 @@
 				C861CF21207A4CC60023E080 /* ColorExtension.swift */,
 				C861CF1D207A4C920023E080 /* Service.swift */,
 				C861CF1E207A4C920023E080 /* view+extension.swift */,
-				C861CF0D207A49220023E080 /* HomeVC.swift */,
+				C8EC3497207E4DE8005C0F7F /* LoginVC.swift */,
+				C861CF0D207A49220023E080 /* RegisterVC.swift */,
+				C8EC3499207E5F45005C0F7F /* ForgotPasswordVC.swift */,
 				C861CF12207A49240023E080 /* Assets.xcassets */,
 				C861CF14207A49240023E080 /* LaunchScreen.storyboard */,
 				C861CF17207A49240023E080 /* Info.plist */,
@@ -140,8 +146,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C861CF0E207A49220023E080 /* HomeVC.swift in Sources */,
+				C861CF0E207A49220023E080 /* RegisterVC.swift in Sources */,
+				C8EC349A207E5F45005C0F7F /* ForgotPasswordVC.swift in Sources */,
 				C861CF0C207A49220023E080 /* AppDelegate.swift in Sources */,
+				C8EC3498207E4DE8005C0F7F /* LoginVC.swift in Sources */,
 				C861CF20207A4C920023E080 /* view+extension.swift in Sources */,
 				C861CF1F207A4C920023E080 /* Service.swift in Sources */,
 				C861CF22207A4CC60023E080 /* ColorExtension.swift in Sources */,
