@@ -88,9 +88,8 @@ class LoginVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.backgroundColor
-        navigationController?.isNavigationBarHidden = true
         setupView()
-        
+        navigationController?.isNavigationBarHidden = true
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillHide, object: nil)
@@ -98,7 +97,7 @@ class LoginVC: UIViewController {
     
     @objc fileprivate func handleGotoRegisterButton(){
         let registerVC = RegisterVC()
-        navigationController?.pushViewController(registerVC, animated: false)
+        navigationController?.pushViewController(registerVC, animated: true)
     }
     
     @objc fileprivate func handleLoginButton(){
@@ -107,7 +106,7 @@ class LoginVC: UIViewController {
     
     @objc fileprivate func handleForgotPasswordButton(){
         let forgotPasswordVC = ForgotPasswordVC()
-        navigationController?.pushViewController(forgotPasswordVC, animated: false)
+        navigationController?.pushViewController(forgotPasswordVC, animated: true)
     }
     
     @objc func handleKeyboardNotification(notification: NSNotification){

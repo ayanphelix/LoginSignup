@@ -159,7 +159,7 @@ class RegisterVC: UIViewController {
     }
     
     @objc fileprivate func handleGoBackToLoginButton(){
-        navigationController?.popViewController(animated: false)
+        navigationController?.popViewController(animated: true)
     }
     
     @objc fileprivate func handleRegsiterButton(){
